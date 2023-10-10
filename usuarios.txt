@@ -1,0 +1,15 @@
+Admin,admin,admin123,30,admin@example.com,Si
+Nino,pepito,pepito123,12,-,No
+Nino,juanito,juanito123,10,-,No
+Nino,lucia,lucia123,15,-,No
+Nino,carlitos,carlitos123,8,-,No
+Usuario Normal,ana,ana123,25,ana@example.com,No
+Usuario Normal,maria,maria123,35,maria@example.com,No
+Usuario Normal,luis,luis123,20,luis@example.com,No
+Usuario Normal,pablo,pablo123,19,pablo@example.com,No
+Usuario Normal,carlos,carlos123,22,carlos@example.com,No
+Usuario Normal,sara,sara123,28,sara@example.com,No
+Usuario Normal,laura,laura123,30,laura@example.com,No
+Usuario Normal,pedro,pedro123,40,pedro@example.com,No
+Usuario Normal,raul,raul123,18,raul@example.com,No
+Usuario Normal,elena,elena123,29,elena@example.com,No
