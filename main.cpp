@@ -222,9 +222,11 @@ void menuConsola(nodoUsuario * actual,listaUsuario* usuarios,listaSoftware* todo
     string opcion2;//eleccion el nombre del software que se quiere agregar/instalar
     nodoSoftware* nodo;
     string opcion3;//eleccion de que software eliminar
+    bool loggedIn = true;  // si el usuario está autenticado
     cout<<"----------------------Menu Usuario-------------------------"<<endl;
     cout<<"-----------------------------------------------------------"<<endl;
     do{
+        cout << "0) Cambiar de usuario" << endl; 
         cout<<"1) Ver Softwares del usuario"<<endl;
         cout<<"2) Agregar un software"<<endl;
         cout<<"3) Eliminar un software"<<endl;
@@ -274,30 +276,42 @@ void menuConsola(nodoUsuario * actual,listaUsuario* usuarios,listaSoftware* todo
                 std::cout << "Opcion no válida." << std::endl;
                 break;
         }
-    } while(opcion != 0);
+    } while(opcion != 0 && loggedIn);
 }
 
 void login(listaUsuario* usuarios, listaSoftware* todos) {
     string nombreUsuario, contrasena;
-    
-    cout << "Ingrese su nombre de usuario: ";
-    cin >> nombreUsuario;
-    cout << "Ingrese su contrasenia: ";
-    cin >> contrasena;
+    bool loggedIn = false;  // Agregamos una bandera para saber si está autenticado
 
-    nodoUsuario* actual = usuarios->getCabeza();
+    while (!loggedIn) {  // Cambiamos a un bucle mientras no esté autenticado
+        cout << "Ingrese su nombre de usuario: ";
+        cin >> nombreUsuario;
+        cout << "Ingrese su contrasenia: ";
+        cin >> contrasena;
 
-    while (actual != nullptr) {
-        if (actual->getUsuario().getNombre() == nombreUsuario && actual->getUsuario().getContrasena() == contrasena) {
-            cout << "                    Bienvenido, " << actual->getUsuario().getNombre() << "!" << endl;
-            menuConsola(actual,usuarios,todos);
-            return; 
+        nodoUsuario* actual = usuarios->getCabeza();
+
+        while (actual != nullptr) {
+            if (actual->getUsuario().getNombre() == nombreUsuario && actual->getUsuario().getContrasena() == contrasena) {
+                cout << "                    Bienvenido, " << actual->getUsuario().getNombre() << "!" << endl;
+                menuConsola(actual,usuarios,todos);
+                loggedIn = true;  // Cambiamos el estado a autenticado
+                break;  // Salimos del bucle interno
+            }
+
+            actual = actual->getSiguiente();
         }
 
-        actual = actual->getSiguiente();
-    }
+        if (!loggedIn) {
+            cout << "Usuario o contraseña incorrectos. ¿Desea intentar de nuevo? (s/n): ";
+            char respuesta;
+            cin >> respuesta;
 
-    cout << "Usuario o contraseña incorrectos." << endl;
+            if (respuesta != 's' && respuesta != 'S') {
+                break;  // Si la respuesta no es 's' o 'S', salimos del bucle externo
+            }
+        }
+    }
 }
 
 int main(){

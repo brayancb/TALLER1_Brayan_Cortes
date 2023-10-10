@@ -43,26 +43,31 @@ public:
 
      return nullptr; // Si no se encontró ningún usuario con el software
     }
+    
+    
 
-    void eliminarSoftware(string nombre, listaUsuario* lista,nodoUsuario * actual1) {
-        nodoSoftware* actual = actual1->getUsuario().getLista()->getCabeza();
+void eliminarSoftware(string nombre, listaUsuario* lista, nodoUsuario* actual1) {
+    nodoSoftware* actual = actual1->getUsuario().getLista()->getCabeza();
+    int usuariosConPermiso = 0;
 
-            while (actual != nullptr) {
-                if (actual->getSoftware().getNombre() == nombre) {
-                    nodoUsuario* usuarioDueño = lista->buscarUsuarioConSoftware(nombre);
+    nodoUsuario* usuarioActual = lista->getCabeza();
 
-                if (usuarioDueño != nullptr) {
-                    string usuario;
-                    string contrasenia;
+    while (usuarioActual != nullptr) {
+        if (usuarioActual->getUsuario().tieneSoftwareInstalado(nombre)) {
+            string usuario;
+            string contrasenia;
 
-                    cout << "Debes tener la autorizacion de " << usuarioDueño->getUsuario().getNombre() << " para desinstalar. Ingresa sus credenciales:" << endl;
-                    cout << "Usuario: ";
-                    cin >> usuario;
-                    cout << "Contrasenia: ";
-                    cin >> contrasenia;
+            cout << "Debes tener la autorización de " << usuarioActual->getUsuario().getNombre() << " para desinstalar. Ingresa sus credenciales:" << endl;
+            cout << "Usuario: ";
+            cin >> usuario;
+            cout << "Contrasenia: ";
+            cin >> contrasenia;
 
-                if (usuarioDueño->getUsuario().getNombre() == usuario && usuarioDueño->getUsuario().getContrasena() == contrasenia) {
-                    // Eliminar el software
+            if (usuarioActual->getUsuario().getNombre() == usuario && usuarioActual->getUsuario().getContrasena() == contrasenia) {
+                actual = actual1->getUsuario().getLista()->getCabeza();
+                while (actual != nullptr) {
+                    if (actual->getSoftware().getNombre() == nombre) {
+                        // Eliminar el software
                     if (actual->getAnterior() != nullptr) {
                         actual->getAnterior()->setSiguiente(actual->getSiguiente());
                     }
@@ -71,26 +76,23 @@ public:
                     }
 
                     if (actual == actual1->getUsuario().getLista()->getCabeza()) {
-                       actual1->getUsuario().getLista()->setCabeza(actual->getSiguiente());
+                        actual1->getUsuario().getLista()->setCabeza(actual->getSiguiente());
                     }
 
                     delete actual;
-                    //cont--;
-                    return;
-                } else {
-                    cout << "Credenciales incorrectas. No tienes permiso para desinstalar el software." << endl;
                     return;
                 }
+                actual = actual->getSiguiente();
+         }
+                usuariosConPermiso++;
             } else {
-                cout << "No se encontró ningún usuario que tenga instalado este software." << endl;
-                return;
+                cout << "Credenciales incorrectas. No tienes permiso para desinstalar el software." << endl;
             }
         }
-        actual = actual->getSiguiente();
+        usuarioActual = usuarioActual->getSiguiente();
     }
 
-    cout << "No se encontró ningún software con el nombre proporcionado." << endl;
-}
 
+}
     
 };

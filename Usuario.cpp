@@ -103,7 +103,7 @@ bool Usuario::instalarSoftware(software agreg, Usuario actual){
         return true;
     }
     else if(actual.getTipo() == "Usuario Normal"){
-         if(agreg.getTipo() != "Seguridad"){
+         if(agreg.getTipo() == "Seguridad"){
             return false;
         }
         return true;       
