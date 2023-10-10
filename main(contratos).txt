@@ -1,0 +1,87 @@
+Función mostrarTodos
+Descripción:
+    Muestra todos los softwares disponibles que el usuario actual puede instalar.
+
+Parámetros:
+    - todos: Puntero a una lista de todos los softwares disponibles.
+    - actual: Puntero al nodo del usuario actual.
+
+Retorno:
+    No tiene retorno, simplemente imprime los softwares disponibles.
+
+Contratos adicionales:
+    - La función asume que la lista 'todos' y el nodo 'actual' son válidos y no son nulos.
+
+
+Función almacenarSinRepetir
+Descripción:
+    Almacena un software en la lista de todos los softwares, asegurándose de que no se repita.
+
+Parámetros:
+    - todos: Puntero a una lista de todos los softwares disponibles.
+    - s: Objeto de tipo software a almacenar.
+
+Retorno:
+    No tiene retorno, simplemente almacena el software si no existe ya en la lista.
+
+Contratos adicionales:
+    - La función asume que la lista 'todos' es válida y no es nula.
+
+Función transformarLog
+Descripción:
+    Transforma una cadena que representa el estado de log (Si o No) a un valor booleano.
+
+Parámetros:
+    - log: Cadena que representa el estado de log.
+
+Retorno:
+    Un valor booleano que representa el estado de log (true si es "Si", false si es "No").
+
+Contratos adicionales:
+    - Ninguno.
+
+Función leerUsuarios
+Descripción:
+    Lee y procesa un archivo de texto que contiene información de usuarios y los agrega a una lista.
+
+Parámetros:
+    - lista: Puntero a una lista de usuarios.
+
+Retorno:
+    No tiene retorno, simplemente agrega usuarios a la lista.
+
+Contratos adicionales:
+    - La función asume que la lista 'lista' es válida y no es nula.
+    - El archivo de texto 'usuarios.txt' debe tener un formato válido y accesible.
+
+Función leerSoftwares
+Descripción:
+    Lee y procesa un archivo de texto que contiene información de softwares y los agrega a listas.
+
+Parámetros:
+    - softwares: Puntero a una lista de softwares.
+    - lista: Puntero a una lista de usuarios.
+    - todos: Puntero a una lista de todos los softwares únicos.
+
+Retorno:
+    No tiene retorno, simplemente agrega softwares a las listas.
+
+Contratos adicionales:
+    - La función asume que las listas 'softwares', 'lista' y 'todos' son válidas y no son nulas.
+    - El archivo de texto 'softwares.txt' debe tener un formato válido y accesible.
+
+Función menuConsola
+Descripción:
+    Muestra un menú de opciones y ejecuta la opción seleccionada por el usuario.
+
+Parámetros:
+    - actual: Puntero al nodo del usuario actual.
+    - usuarios: Puntero a una lista de usuarios.
+    - todos: Puntero a una lista de todos los softwares disponibles.
+
+Retorno:
+    No tiene retorno, simplemente muestra y ejecuta opciones del menú.
+
+Contratos adicionales:
+    - La función asume que el nodo 'actual', y las listas 'usuarios' y 'todos' son válidos y no son nulos.
+
